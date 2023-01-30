@@ -11,11 +11,21 @@ namespace Ansely.Email
     {
         private readonly EmailSenderOptions config;
 
+        /// <summary>
+        /// Initializes a new instance of the Ansely.Email class with the EmailSenderOptions.
+        /// </summary>
+        /// <param name="emailSenderConfig">EmailSender configurations.</param>
         public EmailSender(EmailSenderOptions emailSenderConfig) 
         {
             this.config = emailSenderConfig;
         }
 
+        /// <summary>
+        /// Send an email to the specified email address as an asynchronous opration.
+        /// </summary>
+        /// <typeparam name="Template">A type of the email message template.</typeparam>
+        /// <param name="addressees">A list of specified addresses to receive mail.</param>
+        /// <returns>The result of sending the email.</returns>
         public async Task<EmailSenderResult> SendAsync<Template>(List<string> addressees) where Template : AbstractEmailTemplate, new()
         {
             var template = new Template();
@@ -23,6 +33,12 @@ namespace Ansely.Email
             return await SendAsync(template, addressees);
         }
 
+        /// <summary>
+        /// Send an email to the specified email address as an asynchronous opration.
+        /// </summary>
+        /// <param name="template">An email message template.</param>
+        /// <param name="addressees">A list of specified addresses to receive mail.</param>
+        /// <returns>The result of sending the email.</returns>
         public async Task<EmailSenderResult> SendAsync(AbstractEmailTemplate template, List<string> addressees)
         {
             if(config.Secret == null)
@@ -33,6 +49,11 @@ namespace Ansely.Email
             if (config.Host == null)
             {
                 throw new ArgumentNullException(nameof(config.Host));
+            }
+
+            if(config.FromAddr == null)
+            {
+                throw new ArgumentNullException(nameof(config.FromAddr));
             }
 
             var mailMessage = template.MailMessage;
@@ -63,6 +84,12 @@ namespace Ansely.Email
             }
         }
 
+        /// <summary>
+        /// Send an email to the specified email address.
+        /// </summary>
+        /// <typeparam name="Template">A type of the email message template.</typeparam>
+        /// <param name="addressees">A list of specified addresses to receive mail.</param>
+        /// <returns>The result of sending the email.</returns>
         public EmailSenderResult Send<Template>(List<string> addressees) where Template : AbstractEmailTemplate, new()
         {
             var template = new Template();
@@ -70,6 +97,12 @@ namespace Ansely.Email
             return Send(template, addressees);
         }
 
+        /// <summary>
+        /// Send an email to the specified email address.
+        /// </summary>
+        /// <param name="template">An email message template.</param>
+        /// <param name="addressees">A list of specified addresses to receive mail.</param>
+        /// <returns>The result of sending the email.</returns>
         public EmailSenderResult Send(AbstractEmailTemplate template, List<string> addressees)
         {
             if (config.Secret == null)
@@ -80,6 +113,11 @@ namespace Ansely.Email
             if (config.Host == null)
             {
                 throw new ArgumentNullException(nameof(config.Host));
+            }
+
+            if (config.FromAddr == null)
+            {
+                throw new ArgumentNullException(nameof(config.FromAddr));
             }
 
             var mailMessage = template.MailMessage;

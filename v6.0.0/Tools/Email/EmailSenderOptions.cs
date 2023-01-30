@@ -14,17 +14,17 @@ namespace Ansely.Email
         /// <summary>
         /// Server host.
         /// </summary>
-        public string Host { get; set; }
+        public string? Host { get; set; }
 
         /// <summary>
         /// Sender's email address.
         /// </summary>
-        public string FromAddr { get; set; }
+        public string? FromAddr { get; set; }
 
         /// <summary>
         /// Sender account secret.
         /// </summary>
-        public string Secret { get; set; }
+        public string? Secret { get; set; }
 
     }
 }
