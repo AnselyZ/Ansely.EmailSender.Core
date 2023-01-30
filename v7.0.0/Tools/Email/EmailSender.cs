@@ -6,15 +6,26 @@ namespace Ansely.Email
 {
     /// <summary>
     /// The implementation class of the Ansely.Email.IEmailSender interface.
+    /// <para>
+    /// <see cref="IEmailSender"/> 接口的实现类。
+    /// </para>
     /// </summary>
     public class EmailSender : IEmailSender
     {
         private readonly EmailSenderOptions config;
 
         /// <summary>
-        /// Initializes a new instance of the Ansely.Email class with the EmailSenderOptions.
+        /// Initializes a new instance of the <see cref="Ansely.Email.EmailSender"/> class with the EmailSenderOptions.
+        /// <para>
+        /// 传入 <see cref="EmailSenderOptions"/> 配置选项以实例化一个 <see cref="EmailSender"/> 实例。
+        /// </para>
         /// </summary>
-        /// <param name="emailSenderConfig">EmailSender configurations.</param>
+        /// <param name="emailSenderConfig">
+        /// EmailSender configurations.
+        /// <para>
+        /// 有关于 <see cref="EmailSenderOptions"/> 的配置选项。
+        /// </para>
+        /// </param>
         public EmailSender(EmailSenderOptions emailSenderConfig) 
         {
             this.config = emailSenderConfig;
@@ -22,10 +33,30 @@ namespace Ansely.Email
 
         /// <summary>
         /// Send an email to the specified email address as an asynchronous opration.
+        /// <para>
+        /// 异步地发送一个邮件到指定的邮箱地址。
+        /// </para>
         /// </summary>
-        /// <typeparam name="Template">A type of the email message template.</typeparam>
-        /// <param name="addressees">A list of specified addresses to receive mail.</param>
-        /// <returns>The result of sending the email.</returns>
+        /// <typeparam name="Template">
+        /// A type of the email message template.
+        /// <para>
+        /// 邮件消息模板泛型。
+        /// </para>
+        /// </typeparam>
+        /// <param name="addressees">
+        /// A list of specified addresses to receive mail.
+        /// <para>
+        /// 要接收的邮箱地址列表。
+        /// </para>
+        /// </param>
+        /// <returns>
+        /// The <see cref="System.Threading.Tasks.Task"/> that represents the asynchronous operation, containing
+        /// the <see cref="Ansely.Email.EmailSenderResult"/> of sending the email.
+        /// <para>
+        /// 包含邮件发送结果 <see cref="Ansely.Email.EmailSenderResult"/> 的 
+        /// <see cref="System.Threading.Tasks.Task"/> 对象。
+        /// </para>
+        /// </returns>
         public async Task<EmailSenderResult> SendAsync<Template>(List<string> addressees) where Template : AbstractEmailTemplate, new()
         {
             var template = new Template();
@@ -35,10 +66,30 @@ namespace Ansely.Email
 
         /// <summary>
         /// Send an email to the specified email address as an asynchronous opration.
+        /// <para>
+        /// 异步地发送一个邮件到指定的邮箱地址。
+        /// </para>
         /// </summary>
-        /// <param name="template">An email message template.</param>
-        /// <param name="addressees">A list of specified addresses to receive mail.</param>
-        /// <returns>The result of sending the email.</returns>
+        /// <param name="template">
+        /// A type of the email message template.
+        /// <para>
+        /// 邮件消息模板类实例。
+        /// </para>
+        /// </param>
+        /// <param name="addressees">
+        /// A list of specified addresses to receive mail.
+        /// <para>
+        /// 要接收的邮箱地址列表。
+        /// </para>
+        /// </param>
+        /// <returns>
+        /// The <see cref="System.Threading.Tasks.Task"/> that represents the asynchronous operation, containing
+        /// the <see cref="Ansely.Email.EmailSenderResult"/> of sending the email.
+        /// <para>
+        /// 包含邮件发送结果 <see cref="Ansely.Email.EmailSenderResult"/> 的 
+        /// <see cref="System.Threading.Tasks.Task"/> 对象。
+        /// </para>
+        /// </returns>
         public async Task<EmailSenderResult> SendAsync(AbstractEmailTemplate template, List<string> addressees)
         {
             if(config.Secret == null)
@@ -86,10 +137,28 @@ namespace Ansely.Email
 
         /// <summary>
         /// Send an email to the specified email address.
+        /// <para>
+        /// 发送一个邮件到指定的邮箱地址。
+        /// </para>
         /// </summary>
-        /// <typeparam name="Template">A type of the email message template.</typeparam>
-        /// <param name="addressees">A list of specified addresses to receive mail.</param>
-        /// <returns>The result of sending the email.</returns>
+        /// <typeparam name="Template">
+        /// A type of the email message template.
+        /// <para>
+        /// 邮件消息模板泛型。
+        /// </para>
+        /// </typeparam>
+        /// <param name="addressees">
+        /// A list of specified addresses to receive mail.
+        /// <para>
+        /// 要接收的邮箱地址列表。
+        /// </para>
+        /// </param>
+        /// <returns>
+        /// The <see cref="Ansely.Email.EmailSenderResult"/> of sending the email.
+        /// <para>
+        /// 邮件发送结果。
+        /// </para>
+        /// </returns>
         public EmailSenderResult Send<Template>(List<string> addressees) where Template : AbstractEmailTemplate, new()
         {
             var template = new Template();
@@ -99,10 +168,28 @@ namespace Ansely.Email
 
         /// <summary>
         /// Send an email to the specified email address.
+        /// <para>
+        /// 发送一个邮件到指定的邮箱地址。
+        /// </para>
         /// </summary>
-        /// <param name="template">An email message template.</param>
-        /// <param name="addressees">A list of specified addresses to receive mail.</param>
-        /// <returns>The result of sending the email.</returns>
+        /// <param name="template">
+        /// A type of the email message template.
+        /// <para>
+        /// 邮件消息模板类实例。
+        /// </para>
+        /// </param>
+        /// <param name="addressees">
+        /// A list of specified addresses to receive mail.
+        /// <para>
+        /// 要接收的邮箱地址列表。
+        /// </para>
+        /// </param>
+        /// <returns>
+        /// The <see cref="Ansely.Email.EmailSenderResult"/> of sending the email.
+        /// <para>
+        /// 邮件发送结果。
+        /// </para>
+        /// </returns>
         public EmailSenderResult Send(AbstractEmailTemplate template, List<string> addressees)
         {
             if (config.Secret == null)

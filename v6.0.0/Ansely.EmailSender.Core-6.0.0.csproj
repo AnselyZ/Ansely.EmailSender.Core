@@ -14,9 +14,9 @@
 		<PackageTags>Email;EmailSender;Ansely;</PackageTags>
 		<Company>Ansely</Company>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Version>6.0.0-rc</Version>
+		<Version>6.0.0</Version>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Authors>Ansely</Authors>
 		<PackageIcon>icon_email.png</PackageIcon>
